@@ -118,13 +118,45 @@ def allDonneestr(request):
 #-------------------------------------------------------
 @api_view(['GET'])
 def oneDonneestr(request,id):
-    donnes = equipement.objects.get(id=id)
+    donnes = donneestr.objects.get(id=id)
     serialization = DonneestrSerializer(donnes)
     return Response(serialization.data)
 #-------------------------------------------------------
 # END DONNEESTR'S FUNCTION
 
 # START ANALYE'S FUNCTION
-
-
+#-------------------------------------------------------
+@api_view(['POST'])
+def addAnalyse(request):
+    serializer = AnalyseSerializer(data = request.data)
+    if serializer.is_valid():
+        serializer.save()
+    return Response(serializer.data)
+#-------------------------------------------------------
+@api_view(['PUT'])
+def updateAnalyse(request,id):
+    donnes = analyse.objects.get(id=id)
+    serializer = AnalyseSerializer(instance = donnes, data = request.data)
+    if serializer.is_valid():
+        serializer.save()
+    return Response(serializer.data)
+#-------------------------------------------------------
+@api_view(['DELETE'])
+def delAnalyse(request,id):
+    donnes = analyse.objects.get(id=id)
+    donnes.delete()
+    return Response('Analyse supprimé !!!')
+#-------------------------------------------------------
+@api_view(['GET'])
+def allAnalyse(request):
+    donnes = analyse.objects.all()
+    serialization = AnalyseSerializer(donnes,many=True)
+    return Response(serialization.data)
+#-------------------------------------------------------
+@api_view(['GET'])
+def oneAnalyse(request,id):
+    donnes = analyse.objects.get(id=id)
+    serialization = AnalyseSerializer(donnes)
+    return Response(serialization.data)
+#-------------------------------------------------------
 # END ANALYE'S FUNCTION

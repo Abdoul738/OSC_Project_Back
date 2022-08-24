@@ -1,5 +1,9 @@
 from django.db import models
 
+# lets us explicitly set upload path and filename
+def upload_to(instance, filename):
+    return 'images/{filename}'.format(filename=filename)
+
 # Create your models here.
 class users(models.Model):
     nom = models.CharField(max_length=20,null=True)
@@ -10,8 +14,8 @@ class users(models.Model):
 class equipement(models.Model):
     idcapteur = models.CharField(max_length=20)
     statut = models.BooleanField(False)
-    lat = models.BigIntegerField(max_length=50, null=True)
-    lng = models.BigIntegerField(max_length=50, null=True)
+    lat = models.BigIntegerField(null=True)
+    lng = models.BigIntegerField(null=True)
     user_id = models.ForeignKey('users',on_delete=models.CASCADE,)
 #---------------------------------------------------
 class donneestr(models.Model):
@@ -29,4 +33,4 @@ class analyse(models.Model):
     date_analyse = models.DateTimeField(null=True)
     rslt_analyse = models.CharField(max_length=200,null=True)
     sugt_analyse = models.CharField(max_length=200,null=True)
-    img_url = models.CharField(max_length=200,null=True)
+    Image_url = models.ImageField(upload_to=upload_to, blank=True, null=True)

@@ -21,7 +21,7 @@ python manage.py startapp Application_name
 # Run the django Project
 python3 manage.py runserver
 # Avec adresse IP et port precis
-python3 manage.py runserver your-server-ip:8000
+python3 manage.py runserver 127.0.0.1:8001
 
 # Install django rest framework
 pip install djangorestframework

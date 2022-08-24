@@ -26,6 +26,11 @@ urlpatterns = [
     path('donneestr/<int:id>/',views.oneDonneestr),
     # START API FOR DONNEESTR
     
-    # START API FOR EQUIPEMENT
-    # START API FOR EQUIPEMENT
+    # START API FOR ANALYSE
+    path('addanalyse/',views.addAnalyse),
+    path('updateanalyse/<int:id>/',views.updateAnalyse),
+    path('deleteanalyse/<int:id>/',views.delAnalyse),
+    path('analyses/',views.allAnalyse),
+    path('analyse/<int:id>/',views.oneAnalyse),
+    # START API FOR ANALYSE
 ]
