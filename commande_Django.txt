@@ -28,5 +28,5 @@ pip install djangorestframework
 https://www.geeksforgeeks.org/django-rest-framework-installation/
 
 # effectuez et exécutez des migrations en fonction des modifications apportées à vos modèles.
-python3 manage.py makemigrations table-name
-python3 manage.py migrate
+python manage.py makemigrations table-name
+python manage.py migrate

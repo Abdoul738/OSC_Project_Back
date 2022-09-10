@@ -1,7 +1,13 @@
-from django.urls import path
+from django.urls import path, include
 from . import views
+from rest_framework import routers
+
+router = routers.DefaultRouter()
+router.register('awsimage',views.awsimageView)
+router.register('prediction',views.predictView)
 
 urlpatterns = [
+    path('',include(router.urls)),
     # START API FOR USERS   
     path('users/',views.allUsers),
     path('user/<int:id>/',views.oneUser),

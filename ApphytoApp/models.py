@@ -1,8 +1,9 @@
 from django.db import models
+import json
 
-# lets us explicitly set upload path and filename
-def upload_to(instance, filename):
-    return 'images/{filename}'.format(filename=filename)
+# # lets us explicitly set upload path and filename
+# def upload_to(instance, filename):
+#     return 'images/{filename}'.format(filename=filename)
 
 # Create your models here.
 class users(models.Model):
@@ -29,8 +30,16 @@ class donneestr(models.Model):
     pota = models.FloatField(null=True)
 #---------------------------------------------------
 class analyse(models.Model):
-    capteur_id = models.ForeignKey('equipement',on_delete=models.CASCADE,)
-    date_analyse = models.DateTimeField(null=True)
-    rslt_analyse = models.CharField(max_length=200,null=True)
-    sugt_analyse = models.CharField(max_length=200,null=True)
-    Image_url = models.ImageField(upload_to=upload_to, blank=True, null=True)
+    capt_id = models.ForeignKey('equipement',on_delete=models.CASCADE,)
+    date= models.DateTimeField(null=True)
+    rslt = models.CharField(max_length=200,null=True)
+    image_url = models.ImageField(upload_to='images', blank=True, null=True)
+#---------------------------------------------------
+class prediction(models.Model):
+    img_id = models.ForeignKey('awsimage',on_delete=models.CASCADE,)
+    predicts = models.CharField(max_length=200, null=True)
+    degre = models.FloatField(null=True)
+#---------------------------------------------------
+class awsimage(models.Model):
+    image_url = models.ImageField(upload_to='images', blank=True, null=True)
+    date= models.DateTimeField(null=True)

@@ -1,0 +1,1 @@
+web: gunicorn Phyto_Laafi_Back.wsgi --log-file -
